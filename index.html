@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="theme-color" content="#1A0A0F"/>
+<title>Chandana KM &amp; Keerthi CV — Wedding Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+Kannada:wght@400;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+/* ═══════════════════════════════════════════
+   THEME & RESET
+══════════════════════════════════════════= */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --maroon:#6B1230;
+  --maroon-deep:#3A0717;
+  --maroon-dark:#22030C;
+  --gold:#C9A84C;
+  --gold-light:#ECC975;
+  --gold-pale:#F6E8BF;
+  --gold-dark:#9B7C2A;
+  --dark:#120509;
+  --dark2:#1A0910;
+  --cream:#FAF3E3;
+  --ease-expo:cubic-bezier(0.16,1,0.3,1);
+  --ease-spring:cubic-bezier(0.34,1.56,0.64,1);
+}
+html{
+  font-size:16px;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+body{
+  font-family:'Cormorant Garamond',serif;
+  background:var(--dark);
+  color:var(--cream);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -webkit-text-size-adjust:100%;
+}
+
+/* ═══════════════════════════════════════════
+   LOADER
+══════════════════════════════════════════= */
+#loader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--dark);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;
+  transition:opacity .6s ease,visibility .6s ease;
+}
+#loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.ld-mandala{
+  width:90px;height:90px;position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.ld-mandala::before{
+  content:'';position:absolute;inset:0;border-radius:50%;
+  border:2px solid rgba(201,168,76,.15);
+}
+.ld-mandala::after{
+  content:'';position:absolute;inset:0;border-radius:50%;
+  border:2px solid transparent;
+  border-top-color:var(--gold);border-right-color:var(--gold-light);
+  animation:spin 1s linear infinite;
+}
+.ld-om{font-size:2.4rem;color:var(--gold);animation:pulseOm 1.6s ease-in-out infinite}
+.ld-txt{
+  font-family:'Playfair Display',serif;font-size:.85rem;
+  color:var(--gold-light);letter-spacing:.45em;text-transform:uppercase;
+  animation:pulseOm 1.6s .4s ease-in-out infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulseOm{0%,100%{opacity:.35}50%{opacity:1}}
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════════= */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:800;
+  padding:1.2rem 3.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .4s ease,padding .4s ease,border-color .4s;
+}
+#nav.stuck{
+  background:rgba(18,5,9,.94);
+  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(201,168,76,.2);
+  padding:.8rem 3.5rem;
+}
+.nav-logo{font-family:'Dancing Script',cursive;font-size:1.7rem;color:var(--gold);letter-spacing:.05em}
+.nav-menu{list-style:none;display:flex;gap:2.2rem}
+.nav-menu a{
+  color:rgba(255,255,255,.78);text-decoration:none;
+  font-size:.78rem;letter-spacing:.25em;text-transform:uppercase;
+  position:relative;transition:color .3s;
+}
+.nav-menu a::after{
+  content:'';position:absolute;left:0;bottom:-4px;width:0;height:1px;
+  background:var(--gold);transition:width .3s ease;
+}
+.nav-menu a:hover{color:var(--gold)}
+.nav-menu a:hover::after{width:100%}
+@media(max-width:640px){
+  #nav{padding:1rem 1.4rem}
+  #nav.stuck{padding:.75rem 1.4rem}
+  .nav-menu{display:none}
+}
+
+/* ═══════════════════════════════════════════
+   BANNER 1: TOPMOST PHOTO ONLY BANNER
+   Pure photo with flower petals dropping
+   NO names
+══════════════════════════════════════════= */
+#heroPhoto{
+  position:relative;
+  height:100vh;height:100svh;
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-full-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center 32%;
+  filter:brightness(.92) saturate(1.1);
+  transform:scale(1.02);
+  transition:transform 8s ease-out;
+}
+#heroPhoto:hover .hero-full-img{transform:scale(1.06)}
+.hero-photo-vignette{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 50%,transparent 45%,rgba(18,5,9,.65) 100%),
+             linear-gradient(to bottom,rgba(18,5,9,.25) 0%,transparent 30%,rgba(18,5,9,.7) 100%);
+}
+.hero-flower-host{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:2;
+}
+.hero-scroll-invite{
+  position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);
+  z-index:3;display:flex;flex-direction:column;align-items:center;gap:.6rem;
+  color:var(--gold-pale);font-size:.72rem;letter-spacing:.45em;text-transform:uppercase;
+  animation:floatDown 2.4s ease-in-out infinite;
+  text-shadow:0 2px 10px rgba(0,0,0,.8);
+}
+.hero-scroll-line{
+  width:1.5px;height:48px;
+  background:linear-gradient(to bottom,var(--gold-light),transparent);
+}
+@keyframes floatDown{
+  0%,100%{transform:translateX(-50%) translateY(0)}
+  50%{transform:translateX(-50%) translateY(9px)}
+}
+
+/* ═══════════════════════════════════════════
+   BANNER 2: NAME BANNER (SECOND SECTION)
+   Couples names, auspicious invocation, dates
+══════════════════════════════════════════= */
+#nameBanner{
+  position:relative;
+  padding:7rem 2rem 6.5rem;
+  background:linear-gradient(175deg,var(--dark) 0%,var(--maroon-deep) 45%,var(--dark2) 100%);
+  text-align:center;
+  overflow:hidden;
+  border-top:1px solid rgba(201,168,76,.15);
+  border-bottom:1px solid rgba(201,168,76,.15);
+}
+.nb-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:min(800px,95vw);height:min(800px,95vw);
+  background:radial-gradient(circle,rgba(201,168,76,.09) 0%,rgba(107,18,48,.18) 40%,transparent 70%);
+  pointer-events:none;border-radius:50%;
+}
+.nb-particles{
+  position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;
+}
+.nb-container{
+  position:relative;z-index:2;
+  max-width:920px;margin:0 auto;
+  display:flex;flex-direction:column;align-items:center;gap:1.2rem;
+}
+.nb-om{
+  font-size:3.2rem;color:var(--gold);
+  text-shadow:0 0 50px rgba(201,168,76,.65);
+  animation:glowOm 3s ease-in-out infinite;
+  line-height:1;
+}
+@keyframes glowOm{
+  0%,100%{text-shadow:0 0 25px rgba(201,168,76,.4)}
+  50%{text-shadow:0 0 70px rgba(201,168,76,.85),0 0 100px rgba(236,201,117,.4)}
+}
+.nb-beereshwara, .ft-beereshwara{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(0.95rem, 2.5vw, 1.25rem);
+  color:var(--gold-light);
+  letter-spacing:clamp(0.06em, 1.2vw, 0.14em);
+  font-weight:600;
+  line-height:1.4;
+  margin-top:0.3rem;
+  margin-bottom:0.55rem;
+  text-shadow:0 0 20px rgba(201,168,76,.5);
+  display:block;
+}
+.nb-beereshwara-kn, .ft-beereshwara-kn{
+  font-family:'Noto Serif Kannada',serif;
+  font-size:clamp(0.95rem, 2.2vw, 1.15rem);
+  color:var(--gold);
+  letter-spacing:0.04em;
+  opacity:0.95;
+  line-height:1.65;
+  margin-top:0;
+  margin-bottom:1.5rem;
+  display:block;
+}
+.nb-lead{
+  font-size:.85rem;letter-spacing:.5em;text-transform:uppercase;
+  color:rgba(255,255,255,.7);margin-top:.2rem;
+}
+.nb-names{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3.2rem,9.5vw,7.5rem);
+  font-weight:700;line-height:1.05;
+  color:#fff;margin:.4rem 0;
+  text-shadow:0 4px 35px rgba(0,0,0,.5);
+}
+.nb-names .bride{
+  background:linear-gradient(135deg,#ECC975 0%,#C9A84C 35%,#FDF3E3 65%,#C9A84C 100%);
+  background-size:250% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmerGold 4s linear infinite;
+}
+.nb-names .amp{
+  font-family:'Dancing Script',cursive;
+  display:block;font-size:.58em;margin:-.15em 0;
+  color:var(--gold);-webkit-text-fill-color:var(--gold);
+}
+.nb-names .groom{
+  color:#fff;letter-spacing:.02em;
+}
+.nb-tagline{
+  font-style:italic;font-size:clamp(1.05rem,2.5vw,1.45rem);
+  color:rgba(255,255,255,.88);letter-spacing:.04em;
+  max-width:650px;
+}
+.nb-kannada-quote{
+  font-family:'Noto Serif Kannada',serif;
+  font-size:.98rem;color:var(--gold-light);
+  opacity:.88;line-height:1.8;max-width:700px;
+}
+.nb-date-badges{
+  margin-top:1.2rem;
+  display:flex;gap:1.8rem;align-items:center;justify-content:center;flex-wrap:wrap;
+}
+.nb-date-pill{
+  background:rgba(201,168,76,.09);
+  border:1px solid rgba(201,168,76,.32);
+  border-radius:18px;padding:1rem 2.2rem;
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  position:relative;overflow:hidden;
+  transition:transform .3s ease,border-color .3s;
+}
+.nb-date-pill:hover{
+  transform:translateY(-3px);border-color:rgba(201,168,76,.6);
+}
+.nb-date-pill::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.nb-dp-day{
+  font-family:'Playfair Display',serif;
+  font-size:2.4rem;font-weight:700;color:var(--gold);line-height:1;
+}
+.nb-dp-mon{
+  font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;
+  color:rgba(255,255,255,.6);margin-top:.2rem;
+}
+.nb-dp-ev{
+  font-size:.82rem;color:var(--gold-light);margin-top:.4rem;
+}
+.nb-date-sep{
+  font-family:'Dancing Script',cursive;font-size:2.2rem;color:rgba(201,168,76,.45);
+}
+@keyframes shimmerGold{
+  0%{background-position:0% center}
+  100%{background-position:250% center}
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 3: WEDDING & RECEPTION CARDS
+══════════════════════════════════════════= */
+#eventsCards{
+  padding:6.5rem 2rem;
+  background:linear-gradient(180deg,var(--dark2) 0%,var(--maroon-dark) 50%,var(--dark) 100%);
+  position:relative;overflow:hidden;
+}
+.ev-radial-glow{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:100vw;height:600px;
+  background:radial-gradient(ellipse at 50% 0%,rgba(107,18,48,.35),transparent 70%);
+  pointer-events:none;
+}
+.ev-particles{
+  position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;
+}
+.sec-header{text-align:center;margin-bottom:3.8rem;position:relative;z-index:2}
+.sec-eyebrow{
+  font-size:.72rem;letter-spacing:.65em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.7rem;display:block;
+}
+.sec-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.1rem,5vw,3.2rem);color:#fff;
+}
+.sec-title em{color:var(--gold-light);font-style:italic}
+
+.ev-grid{
+  max-width:1040px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:2.2rem;
+  position:relative;z-index:2;
+}
+@media(max-width:720px){.ev-grid{grid-template-columns:1fr}}
+
+.ev-card{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(201,168,76,.2);
+  border-radius:24px;padding:2.8rem 2.4rem;
+  position:relative;overflow:hidden;
+  transition:transform .45s var(--ease-expo),border-color .4s,box-shadow .4s;
+}
+.ev-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent);
+}
+.ev-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(201,168,76,.55);
+  box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 0 1px rgba(201,168,76,.15);
+}
+.ev-icon{font-size:2.8rem;margin-bottom:1.1rem;display:inline-block}
+.ev-name{
+  font-family:'Playfair Display',serif;font-size:1.8rem;
+  color:var(--gold);margin-bottom:.4rem;
+}
+.ev-date{font-size:1.15rem;color:#fff;margin-bottom:.2rem;font-weight:600}
+.ev-time{
+  font-size:.86rem;letter-spacing:.08em;color:rgba(255,255,255,.55);
+  margin-bottom:1.3rem;text-transform:uppercase;
+}
+.ev-desc{
+  font-size:.98rem;color:rgba(255,255,255,.76);line-height:1.8;
+}
+.ev-kn{
+  font-family:'Noto Serif Kannada',serif;
+  font-size:.88rem;color:var(--gold-light);
+  margin-top:1.1rem;opacity:.9;line-height:1.6;
+}
+
+/* ═══════════════════════════════════════════
+   PHOTO BANNERS WITH CONTENT DIRECTLY ON PHOTO
+   - NO BOX / NO CARD: Text sits right on the photo!
+   - Smooth gradient overlay slightly darkens on scroll
+   - Text emerges with graceful animation
+   - Smooth continuous parallax scroll transitions between banners
+   - Unique particles for every banner
+══════════════════════════════════════════= */
+.parallax-banner{
+  position:relative;
+  width:100%;
+  height:100vh;height:100svh;
+  overflow:hidden;
+  display:flex;align-items:center;
+}
+
+.banner-bg-img{
+  position:absolute;
+  inset:-12% -5%;
+  background-size:cover;
+  background-repeat:no-repeat;
+  will-change:transform;
+  transform:scale(1.12);
+  filter:brightness(.92) saturate(1.15);
+}
+
+/* FOCAL POINTS - Custom per photo to prevent wrong crops */
+#bg1{background-image:url('3cd1b85c-6279-43bc-8df5-5d4d1f34c13a.JPG');background-position:center 32%}
+#bg2{background-image:url('1e24d67d-c984-461a-884e-e2cca30eb608.JPG');background-position:center 22%}
+/* Banner 3: Horse (GROOM'S HEAD 100% PROTECTED, NOT CROPPED) */
+#bg3{background-image:url('4359728c-7324-412a-b940-2c3c114dffe9.JPG');background-position:center 4%}
+#bg4{background-image:url('29d96af8-d151-4b02-bc8f-0c2a514e4510.JPG');background-position:center 35%}
+/* Banner 5: Ambassador Vintage Car (replaces bike) */
+#bg5{background-image:url('1dd41aeb-0189-4396-855d-1b84531e51b6.JPG');background-position:center 26%}
+#bg6{background-image:url('ce26316d-799b-47c1-9d96-1fa3cda30957.JPG');background-position:center 18%}
+
+@media(max-width:600px){
+  #bg3{background-position:50% 3%!important}
+  #bg5{background-position:45% 24%!important}
+  .banner-bg-img{inset:0;transform:none!important}
+}
+
+/* Overlays: Faded dark backdrop that smoothly deepens on scroll */
+.banner-overlay{
+  position:absolute;inset:0;
+  pointer-events:none;z-index:2;
+  will-change:opacity;
+  transition:opacity .5s ease;
+}
+.ov-fade-left{
+  background:linear-gradient(to right,rgba(14,4,7,.88) 0%,rgba(14,4,7,.5) 45%,rgba(14,4,7,.1) 100%),
+             linear-gradient(to top,rgba(14,4,7,.7) 0%,transparent 45%);
+}
+.ov-fade-right{
+  background:linear-gradient(to left,rgba(14,4,7,.88) 0%,rgba(14,4,7,.5) 45%,rgba(14,4,7,.1) 100%),
+             linear-gradient(to top,rgba(14,4,7,.7) 0%,transparent 45%);
+}
+.ov-fade-center{
+  background:radial-gradient(ellipse at 50% 50%,rgba(14,4,7,.35) 0%,rgba(14,4,7,.85) 100%),
+             linear-gradient(to top,rgba(14,4,7,.7) 0%,transparent 45%);
+}
+@media(max-width:640px){
+  .ov-fade-left,.ov-fade-right,.ov-fade-center{
+    background:linear-gradient(to top,rgba(14,4,7,.92) 0%,rgba(14,4,7,.65) 55%,rgba(14,4,7,.25) 100%)!important;
+  }
+}
+
+.banner-particles{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:3;
+}
+
+/* TEXT DIRECTLY ON PHOTO - NO BOX */
+.banner-text-wrap{
+  position:relative;z-index:4;
+  width:100%;max-width:1180px;
+  margin:0 auto;
+  padding:0 3.5rem;
+  display:flex;
+}
+.banner-text-wrap.align-left{justify-content:flex-start}
+.banner-text-wrap.align-right{justify-content:flex-end}
+.banner-text-wrap.align-center{justify-content:center}
+@media(max-width:640px){
+  .banner-text-wrap{padding:0 1.5rem;justify-content:center!important}
+}
+
+.banner-text-content{
+  max-width:560px;
+  text-shadow:0 2px 20px rgba(0,0,0,.85);
+}
+@media(max-width:640px){
+  .banner-text-content{max-width:100%;text-align:center}
+}
+
+.pb-eyebrow{
+  font-size:.72rem;letter-spacing:.65em;text-transform:uppercase;
+  color:var(--gold-light);margin-bottom:.8rem;display:block;
+  text-shadow:0 0 15px rgba(201,168,76,.5);
+}
+.pb-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.2rem,5vw,3.6rem);
+  font-weight:600;line-height:1.12;
+  color:#fff;margin-bottom:1.1rem;
+  text-shadow:0 3px 25px rgba(0,0,0,.9);
+}
+.pb-title em{color:var(--gold-light);font-style:italic}
+.pb-body{
+  font-size:clamp(.98rem,1.9vw,1.22rem);line-height:1.85;
+  color:rgba(255,255,255,.9);
+  text-shadow:0 2px 15px rgba(0,0,0,.9);
+}
+.pb-kannada{
+  font-family:'Noto Serif Kannada',serif;
+  font-size:1.08rem;color:var(--gold-light);
+  margin-top:1.1rem;opacity:.95;line-height:1.65;
+  text-shadow:0 2px 15px rgba(0,0,0,.9);
+}
+.pb-ornament{
+  color:var(--gold);font-size:1.4rem;margin-top:1rem;
+  display:block;letter-spacing:.4em;
+  text-shadow:0 0 15px rgba(201,168,76,.6);
+}
+
+/* ═══════════════════════════════════════════
+   FLOATING PARTICLES (UNIQUE PER BANNER)
+══════════════════════════════════════════= */
+.part{
+  position:absolute;pointer-events:none;will-change:transform,opacity;
+  animation:partFall var(--dur,8s) var(--del,0s) linear infinite;
+  opacity:0;
+}
+@keyframes partFall{
+  0%{transform:translateY(-60px) rotate(0deg) translateX(0px);opacity:0}
+  10%{opacity:var(--peak,.8)}
+  88%{opacity:var(--peak,.6)}
+  100%{transform:translateY(105vh) rotate(var(--rot,450deg)) translateX(var(--drift,40px));opacity:0}
+}
+
+
+/* ═══════════════════════════════════════════
+   VENUE: ARCHITECTURAL & PEAK DESIGN
+══════════════════════════════════════════= */
+#venueSec{
+  padding:7rem 2rem 6.5rem;
+  background:linear-gradient(170deg,var(--dark2) 0%,var(--maroon-deep) 60%,var(--dark) 100%);
+  position:relative;overflow:hidden;
+}
+.venue-watermark{
+  position:absolute;top:50%;right:-6%;transform:translateY(-50%);
+  font-size:clamp(16rem,28vw,26rem);color:rgba(201,168,76,.03);
+  font-family:'Playfair Display',serif;pointer-events:none;user-select:none;
+}
+.venue-container{
+  max-width:1120px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1.08fr;gap:3.5rem;
+  align-items:start;position:relative;z-index:2;
+}
+@media(max-width:850px){.venue-container{grid-template-columns:1fr;gap:2.5rem}}
+
+.venue-card-details{
+  background:rgba(255,255,255,.025);
+  border:1px solid rgba(201,168,76,.25);
+  border-radius:24px;padding:3rem 2.6rem;
+  position:relative;overflow:hidden;
+}
+.venue-card-details::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.v-temple-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold-light);background:rgba(201,168,76,.08);
+  border:1px solid rgba(201,168,76,.25);
+  padding:.35rem 1rem;border-radius:100px;margin-bottom:1.2rem;
+}
+.v-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.6rem,3.2vw,2.3rem);
+  color:var(--gold);line-height:1.2;margin-bottom:.5rem;
+}
+.v-kannada{
+  font-family:'Noto Serif Kannada',serif;
+  font-size:1.05rem;color:var(--gold-light);margin-bottom:1.5rem;
+}
+.v-address{
+  font-size:1.02rem;color:rgba(255,255,255,.8);
+  line-height:1.8;margin-bottom:1.8rem;
+}
+.v-schedule-tiles{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:2.2rem;
+}
+@media(max-width:500px){.v-schedule-tiles{grid-template-columns:1fr}}
+.v-tile{
+  background:rgba(201,168,76,.07);
+  border:1px solid rgba(201,168,76,.18);
+  border-radius:16px;padding:1.1rem 1.3rem;
+}
+.vt-label{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:.3rem}
+.vt-name{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--gold-light);font-weight:600}
+.vt-time{font-size:.85rem;color:rgba(255,255,255,.7);margin-top:.2rem}
+
+.v-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  color:var(--dark);font-weight:700;padding:.85rem 1.8rem;border-radius:12px;
+  text-decoration:none;font-size:.88rem;letter-spacing:.05em;
+  transition:transform .3s,box-shadow .3s;
+  border:none;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(201,168,76,.35)}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:.6rem;
+  border:1.5px solid rgba(201,168,76,.45);color:var(--gold);
+  padding:.85rem 1.8rem;border-radius:12px;
+  text-decoration:none;font-size:.88rem;letter-spacing:.05em;
+  transition:background .3s,border-color .3s;
+  background:transparent;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn-secondary:hover{background:rgba(201,168,76,.12);border-color:var(--gold)}
+
+.venue-map-wrap{
+  border-radius:24px;overflow:hidden;
+  border:1px solid rgba(201,168,76,.25);
+  box-shadow:0 30px 80px rgba(0,0,0,.5);
+  position:relative;
+}
+.venue-map-wrap::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;z-index:2;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.venue-map-wrap iframe{
+  display:block;width:100%;height:470px;border:none;
+}
+@media(max-width:550px){.venue-map-wrap iframe{height:300px}}
+
+#toast{
+  position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);
+  background:var(--gold);color:var(--dark);font-weight:700;font-size:.85rem;
+  padding:.7rem 1.8rem;border-radius:100px;box-shadow:0 10px 30px rgba(0,0,0,.5);
+  opacity:0;transition:transform .4s var(--ease-spring),opacity .4s;
+  z-index:9999;pointer-events:none;
+}
+#toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+/* ═══════════════════════════════════════════
+   FOOTER: TRADITIONAL BLESSINGS
+══════════════════════════════════════════= */
+#footerSec{
+  background:var(--maroon-deep);
+  padding:6.5rem 2rem 3.5rem;
+  text-align:center;position:relative;overflow:hidden;
+}
+#footerSec::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold-light),var(--gold),var(--gold-light),transparent);
+}
+.ft-om{
+  font-size:3.6rem;color:var(--gold);display:inline-block;margin-bottom:1.3rem;
+  animation:glowOm 3s ease-in-out infinite;
+}
+.ft-quote{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(1.15rem,2.8vw,1.75rem);
+  color:var(--gold-light);max-width:720px;margin:0 auto .6rem;line-height:1.5;
+}
+.ft-quote-kn{
+  font-family:'Noto Serif Kannada',serif;
+  font-size:.95rem;color:rgba(255,255,255,.6);margin-bottom:2.6rem;
+}
+.ft-divider{
+  width:200px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:2rem auto;
+}
+.ft-diya{
+  font-size:2.2rem;display:inline-block;margin-bottom:1rem;
+  animation:diyaFlicker 2s ease-in-out infinite alternate;
+}
+@keyframes diyaFlicker{
+  0%{filter:brightness(1) drop-shadow(0 0 5px rgba(255,160,0,.7))}
+  100%{filter:brightness(1.4) drop-shadow(0 0 22px rgba(255,160,0,1))}
+}
+.ft-couple-names{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(2.4rem,7vw,4.2rem);
+  color:var(--gold);
+}
+.ft-subtext{
+  font-size:.76rem;letter-spacing:.35em;text-transform:uppercase;
+  color:rgba(255,255,255,.38);margin-top:.5rem;
+}
+.ft-family-note{
+  font-size:.95rem;color:rgba(255,255,255,.68);
+  line-height:2.1;max-width:620px;margin:0 auto 2.4rem;
+}
+.ft-family-note span{color:var(--gold-light);font-family:'Playfair Display',serif}
+.ft-copyright{
+  font-size:.72rem;color:rgba(255,255,255,.24);letter-spacing:.12em;
+}
+
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-mandala">
+    <div class="ld-om">ॐ</div>
+  </div>
+  <div class="ld-txt">Loading with Love…</div>
+</div>
+
+<!-- NAVIGATION -->
+<nav id="nav">
+  <div class="nav-logo">Chandana &amp; Keerthi</div>
+  <ul class="nav-menu">
+    <li><a href="#heroPhoto">Home</a></li>
+    <li><a href="#nameBanner">Invitation</a></li>
+    <li><a href="#eventsCards">Events</a></li>
+    <li><a href="#venueSec">Venue</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     BANNER 1: TOPMOST PHOTO ONLY BANNER
+     Pure photo with flower petals dropping
+     NO names
+══════════════════════════════════════════= -->
+<section id="heroPhoto">
+  <img class="hero-full-img" src="18089bef-c770-4d95-beb5-91a60ff4e4e9.JPG" alt="Chandana &amp; Keerthi on Lotus Lake" fetchpriority="high"/>
+  <div class="hero-photo-vignette"></div>
+  <div class="hero-flower-host" id="heroFlowerHost"></div>
+
+  <div class="hero-scroll-invite">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll to Explore</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     BANNER 2: NAME BANNER (SECOND SECTION)
+     Couples names, auspicious invocation, dates
+══════════════════════════════════════════= -->
+<section id="nameBanner">
+  <div class="nb-glow"></div>
+  <div class="nb-particles" id="nbParticles"></div>
+
+  <div class="nb-container">
+    <div class="nb-om">ॐ</div>
+    <p class="nb-beereshwara">|| Sri Beereshwara Swamy Prasanna ||</p>
+    <p class="nb-beereshwara-kn">|| ಶ್ರೀ ಬೀರೇಶ್ವರ ಸ್ವಾಮಿ ಪ್ರಸನ್ನ ||</p>
+    <p class="nb-lead">We cordially invite you to celebrate the wedding of</p>
+
+    <h1 class="nb-names">
+      <span class="bride">Chandana KM</span>
+      <span class="amp">weds</span>
+      <span class="groom">Keerthi CV</span>
+    </h1>
+
+    <p class="nb-tagline">Two souls, one destiny — joined by divine grace and eternal love</p>
+    <p class="nb-kannada-quote">ಪ್ರೀತಿ, ಸ್ನೇಹ, ವಿಶ್ವಾಸಗಳ ಸಂಗಮ — ಸಪ್ತಪದಿಯ ಸಡಗರಕ್ಕೆ ನಿಮ್ಮ ಶುಭ ಹಾರೈಕೆಗಳೇ ನಮಗೆ ದಿವ್ಯ ಆಶೀರ್ವಾದ</p>
+
+    <div class="nb-date-badges">
+      <div class="nb-date-pill">
+        <div class="nb-dp-day">05</div>
+        <div class="nb-dp-mon">December 2026</div>
+        <div class="nb-dp-ev">🌆 Saturday · Reception Evening</div>
+      </div>
+      <div class="nb-date-sep">✦</div>
+      <div class="nb-date-pill">
+        <div class="nb-dp-day">06</div>
+        <div class="nb-dp-mon">December 2026</div>
+        <div class="nb-dp-ev">🌅 Sunday · Wedding Morning</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 3: WEDDING & RECEPTION CARDS
+══════════════════════════════════════════= -->
+<section id="eventsCards">
+  <div class="ev-radial-glow"></div>
+  <div class="ev-particles" id="evParticles"></div>
+
+  <div class="sec-header">
+    <span class="sec-eyebrow">✦ Join the Celebrations ✦</span>
+    <h2 class="sec-title">The Auspicious <em>Occasions</em></h2>
+  </div>
+
+  <div class="ev-grid">
+    <!-- Reception Card -->
+    <div class="ev-card" id="cardReception">
+      <span class="ev-icon">🪔</span>
+      <h3 class="ev-name">Reception</h3>
+      <div class="ev-date">Saturday, 5th December 2026</div>
+      <div class="ev-time">Evening Celebration · 6:30 PM Onwards</div>
+      <p class="ev-desc">
+        Join us for an enchanting evening filled with music, laughter, dinner, and togetherness as we joyfully welcome the newly wedded couple.
+      </p>
+      <p class="ev-kn">ಸಂತೋಷದ ಸಂಜೆ — ಸ್ವಾಗತ ಸಮಾರಂಭ ಮತ್ತು ಪ್ರೀತಿಯ ಸತ್ಕಾರ</p>
+    </div>
+
+    <!-- Wedding Card -->
+    <div class="ev-card" id="cardWedding">
+      <span class="ev-icon">🌸</span>
+      <h3 class="ev-name">Wedding Ceremony</h3>
+      <div class="ev-date">Sunday, 6th December 2026</div>
+      <div class="ev-time">Muhurtham: 8:15 AM to 9:15 AM</div>
+      <p class="ev-desc">
+        A traditional South Indian Hindu marriage ceremony solemnized with Vedic chants, Mangalya Dharana, and divine blessings of God.
+      </p>
+      <p class="ev-kn">ದೇವರ ದಿವ್ಯ ಆಶೀರ್ವಾದದೊಂದಿಗೆ ಶುಭ ಮುಹೂರ್ತ: ಬೆಳಿಗ್ಗೆ 8:15 ರಿಂದ 9:15 ರವರೆಗೆ</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PHOTO BANNERS WITH CONTENT DIRECTLY ON PHOTO
+     - NO "Our Story" heading!
+     - Content directly on photo with faded top / dark gradient
+     - Smooth transition: Photo slightly darkens on scroll & text glides in
+     - Smooth continuous parallax scroll between banners
+     - Unique particles for every banner
+══════════════════════════════════════════= -->
+<div id="photoBannersContainer">
+
+  <!-- BANNER 1: LOTUS BOAT CLOSEUP -->
+  <section class="parallax-banner" id="banner1">
+    <div class="banner-bg-img" id="bg1"></div>
+    <div class="banner-overlay ov-fade-left"></div>
+    <div class="banner-particles" id="spLotus"></div>
+    <div class="banner-text-wrap align-left">
+      <div class="banner-text-content">
+        <span class="pb-eyebrow pb-anim">✦ Serenity ✦</span>
+        <h2 class="pb-title pb-anim">Born for each <em>other</em></h2>
+        <p class="pb-body pb-anim">
+          Like lotus flowers blossoming in tranquil backwaters, Chandana and Keerthi discovered a love that is pure, serene, and timeless. Two hearts that beat as one in divine harmony.
+        </p>
+        <p class="pb-kannada pb-anim">ಒಂದು ಜನ್ಮದ ಪ್ರೀತಿ, ಏಳು ಜನ್ಮಗಳ ದಿವ್ಯ ಬಂಧ</p>
+        <span class="pb-ornament pb-anim">🪷 ✦ 🪷</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER 2: WATERFALL -->
+  <section class="parallax-banner" id="banner2">
+    <div class="banner-bg-img" id="bg2"></div>
+    <div class="banner-overlay ov-fade-right"></div>
+    <div class="banner-particles" id="spWater"></div>
+    <div class="banner-text-wrap align-right">
+      <div class="banner-text-content">
+        <span class="pb-eyebrow pb-anim">✦ Adventure ✦</span>
+        <h2 class="pb-title pb-anim">A love that <em>flows free</em></h2>
+        <p class="pb-body pb-anim">
+          Like a waterfall finding its unhindered path through wild mountains, their love cascades with joyful energy — untamed, brave, and infinitely refreshing.
+        </p>
+        <p class="pb-kannada pb-anim">ಹರಿಯುವ ನೀರಿನಂತೆ ಸದಾ ನವೀನ, ನಿರಂತರ ಪ್ರೇಮ</p>
+        <span class="pb-ornament pb-anim">💧 ❖ 💧</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER 3: WHITE HORSE (GROOM HEAD FULLY VISIBLE) -->
+  <section class="parallax-banner" id="banner3">
+    <div class="banner-bg-img" id="bg3"></div>
+    <div class="banner-overlay ov-fade-left"></div>
+    <div class="banner-particles" id="spRoyal"></div>
+    <div class="banner-text-wrap align-left">
+      <div class="banner-text-content">
+        <span class="pb-eyebrow pb-anim">✦ Royal Grace ✦</span>
+        <h2 class="pb-title pb-anim">A <em>royal</em> beginning</h2>
+        <p class="pb-body pb-anim">
+          He arrives with the pride of a prince upon a noble steed; she walks alongside him with timeless elegance that turns every ordinary step into royal history.
+        </p>
+        <p class="pb-kannada pb-anim">ರಾಜಕುಮಾರ ಮತ್ತು ರಾಜಕುಮಾರಿಯ ನವ ಪಯಣ</p>
+        <span class="pb-ornament pb-anim">⭐ ✦ ⭐</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER 4: BEACH WALK -->
+  <section class="parallax-banner" id="banner4">
+    <div class="banner-bg-img" id="bg4"></div>
+    <div class="banner-overlay ov-fade-center"></div>
+    <div class="banner-particles" id="spBeach"></div>
+    <div class="banner-text-wrap align-center">
+      <div class="banner-text-content" style="text-align:center;">
+        <span class="pb-eyebrow pb-anim">✦ Endless Horizon ✦</span>
+        <h2 class="pb-title pb-anim">Hand in hand,<br/><em>always</em></h2>
+        <p class="pb-body pb-anim">
+          Where gentle waves kiss the golden shore, they walk into tomorrow. Two footprints side-by-side, one direction, an endless horizon of togetherness.
+        </p>
+        <p class="pb-kannada pb-anim">ಕಡಲ ತೀರದ ಹೆಜ್ಜೆಗಳು, ಎಂದಿಗೂ ಅಳಿಯದ ಶಾಶ್ವತ ನೆನಪುಗಳು</p>
+        <span class="pb-ornament pb-anim">🌊 ∞ 🌊</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER 5: AMBASSADOR CAR (REPLACED BIKE) -->
+  <section class="parallax-banner" id="banner5">
+    <div class="banner-bg-img" id="bg5"></div>
+    <div class="banner-overlay ov-fade-right"></div>
+    <div class="banner-particles" id="spRetro"></div>
+    <div class="banner-text-wrap align-right">
+      <div class="banner-text-content">
+        <span class="pb-eyebrow pb-anim">✦ Timeless Charm ✦</span>
+        <h2 class="pb-title pb-anim">A vintage love <em>story</em></h2>
+        <p class="pb-body pb-anim">
+          Inside a vintage Ambassador with sunglasses and golden smiles — modern souls celebrating the timeless romance of an iconic era. The drive of a lifetime has begun.
+        </p>
+        <p class="pb-kannada pb-anim">ಹಳೆಯ ನೆನಪಿನ ಹೊಸ ರಾಗ — ಪ್ರೇಮದ ಸವಾರಿ</p>
+        <span class="pb-ornament pb-anim">✦ 🚗 ✦</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER 6: BOOMBOX & HORSE -->
+  <section class="parallax-banner" id="banner6">
+    <div class="banner-bg-img" id="bg6"></div>
+    <div class="banner-overlay ov-fade-left"></div>
+    <div class="banner-particles" id="spMusic"></div>
+    <div class="banner-text-wrap align-left">
+      <div class="banner-text-content">
+        <span class="pb-eyebrow pb-anim">✦ Rhythm of Love ✦</span>
+        <h2 class="pb-title pb-anim">Play it on <em>repeat</em></h2>
+        <p class="pb-body pb-anim">
+          With a vintage radio on his shoulder and her hand warmly held in his, they march to the rhythm of their own heartbeats. Life is their song, and love is their melody.
+        </p>
+        <p class="pb-kannada pb-anim">ಜೀವನವೆಂಬ ಗಾನ, ಪ್ರೀತಿಯ ಸುಮಧುರ ತಾನ</p>
+        <span class="pb-ornament pb-anim">♪ ♫ 🎶</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     VENUE: ARCHITECTURAL & PEAK DESIGN
+══════════════════════════════════════════= -->
+<section id="venueSec">
+  <div class="venue-watermark">ॐ</div>
+
+  <div class="sec-header">
+    <span class="sec-eyebrow">✦ Location &amp; Directions ✦</span>
+    <h2 class="sec-title">The Auspicious <em>Venue</em></h2>
+  </div>
+
+  <div class="venue-container">
+    <div class="venue-card-details">
+      <div class="v-temple-badge">🛕 Kalyana Mantapa</div>
+      <h3 class="v-title">Sri Manjunatha Swamy<br/>Kalyana Mantapa</h3>
+      <p class="v-kannada">ಶ್ರೀ ಮಂಜುನಾಥ ಸ್ವಾಮಿ ಕಲ್ಯಾಣ ಮಂಟಪ</p>
+      <p class="v-address">
+        Bangalore, Karnataka<br/>
+        <em>With the divine blessings of God and family</em>
+      </p>
+
+      <div class="v-schedule-tiles">
+        <div class="v-tile">
+          <div class="vt-label">Reception</div>
+          <div class="vt-name">Saturday, 5 Dec 2026</div>
+          <div class="vt-time">Evening · 6:30 PM Onwards</div>
+        </div>
+        <div class="v-tile">
+          <div class="vt-label">Muhurtham</div>
+          <div class="vt-name">Sunday, 6 Dec 2026</div>
+          <div class="vt-time">Morning · 8:15 AM to 9:15 AM</div>
+        </div>
+      </div>
+
+      <div class="v-actions">
+        <a class="btn-primary" href="https://maps.google.com/?q=13.050827818865514,77.76037319167942" target="_blank" rel="noopener">
+          📍 Open in Google Maps
+        </a>
+        <a class="btn-secondary" href="https://maps.apple.com/?q=13.050827818865514,77.76037319167942" target="_blank" rel="noopener">
+          🧭 Apple Maps
+        </a>
+        <button class="btn-secondary" onclick="copyVenueAddress()">
+          📋 Copy Address
+        </button>
+      </div>
+    </div>
+
+    <div class="venue-map-wrap">
+      <iframe
+        src="https://maps.google.com/maps?q=13.050827818865514,77.76037319167942&hl=en&z=16&output=embed"
+        allowfullscreen loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Wedding Venue — Sri Manjunatha Swamy Kalyana Mantapa">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- TOAST NOTIFICATION -->
+<div id="toast">Address copied to clipboard!</div>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER: TRADITIONAL BLESSINGS
+══════════════════════════════════════════= -->
+<footer id="footerSec">
+  <div class="ft-om">ॐ</div>
+  <p class="ft-beereshwara">|| Sri Beereshwara Swamy Prasanna ||</p>
+  <p class="ft-beereshwara-kn">|| ಶ್ರೀ ಬೀರೇಶ್ವರ ಸ್ವಾಮಿ ಪ್ರಸನ್ನ ||</p>
+  <p class="ft-quote">"May your union be blessed by the divine —<br/>seven vows, one eternal journey"</p>
+  <p class="ft-quote-kn">ದೇವರ ಆಶೀರ್ವಾದ ಸದಾ ನಿಮ್ಮ ಮೇಲಿರಲಿ</p>
+  <div class="ft-divider"></div>
+
+  <div class="ft-diya">🪔</div>
+  <div class="ft-couple-names">Chandana KM &amp; Keerthi CV</div>
+  <p class="ft-subtext">December 5–6, 2026 · Bangalore, Karnataka</p>
+
+  <div class="ft-divider"></div>
+
+  <div class="ft-family-note">
+    <p><span>With the blessings of God and our beloved parents &amp; family</span></p>
+    <p>Sri Manjunatha Swamy Kalyana Mantapa, Bangalore</p>
+    <p>Reception: Saturday Evening, 5th December &nbsp;|&nbsp; Marriage: Sunday Morning, 6th December (Muhurtham: 8:15 AM – 9:15 AM)</p>
+  </div>
+
+  <p class="ft-copyright">Made with love for Chandana &amp; Keerthi's Wedding</p>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     SCRIPTS & ANIMATION ENGINE
+══════════════════════════════════════════= -->
+<script>
+(function(){
+'use strict';
+
+/* Register GSAP ScrollTrigger */
+gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.config({ ignoreMobileResize: true });
+
+/* ─────────────────────────────────────────
+   LOADER
+───────────────────────────────────────── */
+function dismissLoader(){
+  setTimeout(()=>{
+    const l = document.getElementById('loader');
+    if(l) l.classList.add('hidden');
+  }, 350);
+}
+if(document.readyState === 'complete') dismissLoader();
+else window.addEventListener('load', dismissLoader, {once:true});
+
+/* ─────────────────────────────────────────
+   NAVBAR SCROLL CLASS
+───────────────────────────────────────── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', ()=>{
+  nav.classList.toggle('stuck', window.scrollY > 60);
+}, {passive:true});
+
+/* ─────────────────────────────────────────
+   PARTICLE ENGINE FOR ALL BANNERS
+───────────────────────────────────────── */
+const PARTICLE_SETTINGS = {
+  heroFlowerHost: {
+    symbols: ['🌸','🪷','🌺','🌼','✿','❀','💮'],
+    rate: 650, size: [0.9, 1.6], dur: [6, 10], drift: [-80, 80], peak: 0.85
+  },
+  nbParticles: {
+    symbols: ['✨','✦','⭐','◆','✧'],
+    rate: 600, size: [0.65, 1.2], dur: [5, 8], drift: [-50, 50], peak: 0.8
+  },
+  evParticles: {
+    symbols: ['🌸','🌼','✨','✿'],
+    rate: 750, size: [0.8, 1.3], dur: [6, 9], drift: [-40, 60], peak: 0.75
+  },
+  spLotus: {
+    symbols: ['🪷','🌸','💮','✿'],
+    rate: 700, size: [0.9, 1.4], dur: [7, 11], drift: [-60, 60], peak: 0.85
+  },
+  spWater: {
+    symbols: ['💧','🫧','✧','•','◦'],
+    rate: 450, size: [0.55, 1.0], dur: [4, 7], drift: [-30, 40], peak: 0.8
+  },
+  spRoyal: {
+    symbols: ['⭐','✦','★','✨','◆'],
+    rate: 600, size: [0.75, 1.3], dur: [5, 9], drift: [-45, 60], peak: 0.9
+  },
+  spBeach: {
+    symbols: ['🫧','🌊','🐚','◦','·'],
+    rate: 700, size: [0.65, 1.15], dur: [6, 10], drift: [-60, 70], peak: 0.75
+  },
+  spRetro: {
+    symbols: ['✦','◇','✨','○','•'],
+    rate: 550, size: [0.6, 1.1], dur: [5, 8], drift: [-40, 55], peak: 0.75
+  },
+  spMusic: {
+    symbols: ['♪','♫','♬','🎵','🎶'],
+    rate: 750, size: [0.8, 1.35], dur: [6, 10], drift: [-40, 60], peak: 0.85
+  }
+};
+
+function rnd(min, max){ return min + Math.random() * (max - min); }
+
+function spawnParticle(containerId){
+  const host = document.getElementById(containerId);
+  const cfg = PARTICLE_SETTINGS[containerId];
+  if(!host || !cfg) return;
+
+  const p = document.createElement('span');
+  p.className = 'part';
+  p.textContent = cfg.symbols[Math.floor(Math.random() * cfg.symbols.length)];
+  p.style.left = rnd(2, 96) + 'vw';
+  p.style.top = '-50px';
+  p.style.fontSize = rnd(cfg.size[0], cfg.size[1]) + 'rem';
+
+  const dur = rnd(cfg.dur[0], cfg.dur[1]);
+  const del = rnd(0, 1.2);
+  p.style.setProperty('--dur', dur + 's');
+  p.style.setProperty('--del', del + 's');
+  p.style.setProperty('--rot', rnd(200, 650) + 'deg');
+  p.style.setProperty('--drift', rnd(cfg.drift[0], cfg.drift[1]) + 'px');
+  p.style.setProperty('--peak', cfg.peak);
+
+  host.appendChild(p);
+  setTimeout(()=>{ p.remove(); }, (dur + del + 0.6) * 1000);
+}
+
+function startParticleLoop(containerId){
+  const cfg = PARTICLE_SETTINGS[containerId];
+  if(!cfg) return null;
+  for(let i=0; i<3; i++) setTimeout(()=>spawnParticle(containerId), i * 220);
+  return setInterval(()=>spawnParticle(containerId), cfg.rate);
+}
+
+// Start persistent particles
+startParticleLoop('heroFlowerHost');
+startParticleLoop('nbParticles');
+startParticleLoop('evParticles');
+
+// Banner particles via IntersectionObserver
+const bannerParticleTimers = {};
+const bannerObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    const host = e.target.querySelector('.banner-particles');
+    if(!host) return;
+    const cid = host.id;
+    if(e.isIntersecting){
+      if(!bannerParticleTimers[cid]){
+        bannerParticleTimers[cid] = startParticleLoop(cid);
+      }
+    } else {
+      clearInterval(bannerParticleTimers[cid]);
+      delete bannerParticleTimers[cid];
+    }
+  });
+}, {threshold: 0.05});
+
+document.querySelectorAll('.parallax-banner').forEach(b => bannerObserver.observe(b));
+
+/* ─────────────────────────────────────────
+   SMOOTH PARALLAX & CONTENT REVEAL ON PHOTO
+   - NO BOX / NO CARD
+   - Photo darkens smoothly on scroll as text emerges
+   - Seamless continuous transition between banners
+───────────────────────────────────────── */
+document.querySelectorAll('.parallax-banner').forEach((banner)=>{
+  const bg      = banner.querySelector('.banner-bg-img');
+  const overlay = banner.querySelector('.banner-overlay');
+  const texts   = banner.querySelectorAll('.pb-anim');
+
+  // Smooth background parallax scroll (desktop)
+  if (window.innerWidth > 768) {
+    gsap.fromTo(bg,
+      { yPercent: -10 },
+      {
+        yPercent: 10,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: banner,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.5,
+        }
+      }
+    );
+  }
+
+  // Smooth overlay darkening: starts subtle, softly deepens as you scroll in
+  gsap.fromTo(overlay,
+    { opacity: 0.25 },
+    {
+      opacity: 0.88,
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: banner,
+        start: 'top 80%',
+        end: 'top 25%',
+        scrub: true,
+      }
+    }
+  );
+
+  // Text animation directly on photo: elegant stagger reveal
+  gsap.fromTo(texts,
+    { opacity: 0, y: 38 },
+    {
+      opacity: 1,
+      y: 0,
+      stagger: 0.14,
+      duration: 1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: banner,
+        start: 'top 65%',
+        toggleActions: 'play none none reverse',
+      }
+    }
+  );
+});
+
+/* ─────────────────────────────────────────
+   EVENTS CARD REVEAL ON SCROLL
+───────────────────────────────────────── */
+gsap.fromTo('#cardReception',
+  { opacity: 0, y: 55 },
+  {
+    opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+    scrollTrigger: { trigger: '#eventsCards', start: 'top 70%' }
+  }
+);
+gsap.fromTo('#cardWedding',
+  { opacity: 0, y: 55 },
+  {
+    opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.2,
+    scrollTrigger: { trigger: '#eventsCards', start: 'top 70%' }
+  }
+);
+
+
+/* ─────────────────────────────────────────
+   COPY VENUE ADDRESS HELPER
+───────────────────────────────────────── */
+window.copyVenueAddress = function(){
+  const addr = "Sri Manjunatha Swamy Kalyana Mantapa, Bangalore, Karnataka (Coordinates: 13.0508278, 77.7603732)";
+  navigator.clipboard.writeText(addr).then(()=>{
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(()=>{ toast.classList.remove('show'); }, 2600);
+  });
+};
+
+})();
+</script>
+</body>
+</html>
