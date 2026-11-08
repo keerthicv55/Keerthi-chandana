@@ -682,6 +682,21 @@ body{
 .pv-play.hidden{opacity:0;pointer-events:none}
 @media(max-width:600px){#preWeddingVideo{padding:4.5rem 1rem}.pv-frame{border-radius:14px}}
 
+
+/* PRE-WEDDING PHOTO GALLERY */
+#preWeddingGallery{padding:6rem 1.5rem;background:linear-gradient(180deg,var(--dark) 0%,var(--maroon-deep) 50%,var(--dark2) 100%);border-top:1px solid rgba(201,168,76,.16)}
+.pwg-wrap{max-width:1180px;margin:0 auto;text-align:center}
+.pwg-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3rem);color:#fff;margin:.5rem 0}
+.pwg-title em{color:var(--gold-light)}
+.pwg-note{color:rgba(255,255,255,.72);font-size:1.08rem;margin:0 auto 2.4rem;max-width:620px}
+.pwg-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.pwg-item{display:block;overflow:hidden;border:1px solid rgba(201,168,76,.24);border-radius:14px;background:#1a0910;aspect-ratio:4/5}
+.pwg-item:nth-child(1),.pwg-item:nth-child(4),.pwg-item:nth-child(9){aspect-ratio:5/4}
+.pwg-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease,filter .4s ease}
+.pwg-item:hover img{transform:scale(1.045);filter:brightness(1.08)}
+@media(max-width:760px){.pwg-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+@media(max-width:420px){#preWeddingGallery{padding:4.5rem 1rem}.pwg-grid{gap:8px}.pwg-item{border-radius:9px}}
+
 </style>
 </head>
 <body>
@@ -994,6 +1009,28 @@ body{
         <span>▶</span>
         <span>Tap to play with sound ❤️</span>
       </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- PRE-WEDDING PHOTO GALLERY -->
+<section id="preWeddingGallery">
+  <div class="pwg-wrap">
+    <span class="sec-eyebrow">✦ Captured Memories ✦</span>
+    <h2 class="pwg-title">Our Pre-Wedding <em>Gallery</em></h2>
+    <p class="pwg-note">Little moments, beautiful places, and memories we will cherish forever ❤️</p>
+    <div class="pwg-grid">
+      <a class="pwg-item" href="photos/photo-01.jpg" target="_blank" rel="noopener" aria-label="Open pre-wedding photo 1"><img src="photos/photo-01.jpg" alt="Keerthi and Chandana pre-wedding photo 1" loading="lazy"/></a>
+      <a class="pwg-item" href="photos/photo-02.jpg" target="_blank" rel="noopener" aria-label="Open pre-wedding photo 2"><img src="photos/photo-02.jpg" alt="Keerthi and Chandana pre-wedding photo 2" loading="lazy"/></a>
+      <a class="pwg-item" href="photos/photo-03.jpg" target="_blank" rel="noopener" aria-label="Open pre-wedding photo 3"><img src="photos/photo-03.jpg" alt="Keerthi and Chandana pre-wedding photo 3" loading="lazy"/></a>
+      <a class="pwg-item" href="photos/photo-04.jpg" target="_blank" rel="noopener" aria-label="Open pre-wedding photo 4"><img src="photos/photo-04.jpg" alt="Keerthi and Chandana pre-wedding photo 4" loading="lazy"/></a>
+      <a class="pwg-item" href="photos/photo-05.jpg" target="_blank" rel="noopener" aria-label="Open pre-wedding photo 5"><img src="photos/photo-05.jpg" alt="Keerthi and Chandana pre-wedding photo 5" loading="lazy"/></a>
+      <a class="pwg-item" href="photos/photo-06.jpg" target="_blank" rel="noopener" aria-label="Open pre-wedding photo 6"><img src="photos/photo-06.jpg" alt="Keerthi and Chandana pre-wedding photo 6" loading="lazy"/></a>
+      <a class="pwg-item" href="photos/photo-07.jpg" target="_blank" rel="noopener" aria-label="Open pre-wedding photo 7"><img src="photos/photo-07.jpg" alt="Keerthi and Chandana pre-wedding photo 7" loading="lazy"/></a>
+      <a class="pwg-item" href="photos/photo-08.jpg" target="_blank" rel="noopener" aria-label="Open pre-wedding photo 8"><img src="photos/photo-08.jpg" alt="Keerthi and Chandana pre-wedding photo 8" loading="lazy"/></a>
+      <a class="pwg-item" href="photos/photo-09.jpg" target="_blank" rel="noopener" aria-label="Open pre-wedding photo 9"><img src="photos/photo-09.jpg" alt="Keerthi and Chandana pre-wedding photo 9" loading="lazy"/></a>
+      <a class="pwg-item" href="photos/photo-10.jpg" target="_blank" rel="noopener" aria-label="Open pre-wedding photo 10"><img src="photos/photo-10.jpg" alt="Keerthi and Chandana pre-wedding photo 10" loading="lazy"/></a>
     </div>
   </div>
 </section>
